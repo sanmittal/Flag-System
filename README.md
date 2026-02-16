@@ -9,11 +9,12 @@ This project implements a production-ready Feature Flag Engine designed for scal
 The system is architected using clean separation of concerns and is built to meet core feature management requirements while demonstrating production-grade engineering practices.
 
 
-Clone Repository:-
-git clone <your-repository-url>
+Clone Repository:-"
+git clone "https://github.com/sanmittal/Flag-System.git"
 cd feature-flag-engine
 
-2. Install Dependencies
+2. Install Dependencies:- 
+
 npm install
 
 3. Create Environment File
