@@ -5,9 +5,7 @@ import { FeatureService } from "../services/service";
 const router = Router();
 const service = new FeatureService();
 
-/* -------------------------
-   VALIDATION SCHEMAS
---------------------------*/
+
 
 const createSchema = z.object({
   key: z.string(),
@@ -45,9 +43,7 @@ const regionOverrideSchema = z.object({
   enabled: z.boolean()
 });
 
-/* -------------------------
-   FEATURE CRUD
---------------------------*/
+
 
 // Create feature
 router.post("/", async (req, res) => {
@@ -90,9 +86,7 @@ router.delete("/:key", async (req, res) => {
   }
 });
 
-/* -------------------------
-   GLOBAL & ROLLOUT
---------------------------*/
+
 
 // Update global enabled state
 router.patch("/:key/global", async (req, res) => {
@@ -119,9 +113,7 @@ router.patch("/:key/rollout", async (req, res) => {
   }
 });
 
-/* -------------------------
-   EVALUATION
---------------------------*/
+
 
 router.post("/:key/evaluate", async (req, res) => {
   try {
@@ -133,9 +125,7 @@ router.post("/:key/evaluate", async (req, res) => {
   }
 });
 
-/* -------------------------
-   USER OVERRIDES
---------------------------*/
+
 
 // Add / update user override
 router.post("/:key/user-override", async (req, res) => {
@@ -165,9 +155,6 @@ router.delete("/:key/user-override/:userId", async (req, res) => {
   }
 });
 
-/* -------------------------
-   GROUP OVERRIDES
---------------------------*/
 
 // Add / update group override
 router.post("/:key/group-override", async (req, res) => {
@@ -197,9 +184,7 @@ router.delete("/:key/group-override/:groupId", async (req, res) => {
   }
 });
 
-/* -------------------------
-   REGION OVERRIDES
---------------------------*/
+
 
 // Add / update region override
 router.post("/:key/region-override", async (req, res) => {
