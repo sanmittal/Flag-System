@@ -1,0 +1,50 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model FeatureFlag {
+  id            String   @id @default(uuid())
+  key           String   @unique
+  description   String?
+  enabled       Boolean  @default(false)
+  rolloutPct    Int?
+
+  userOverrides   UserOverride[]
+  groupOverrides  GroupOverride[]
+  regionOverrides RegionOverride[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserOverride {
+  id        String  @id @default(uuid())
+  userId    String
+  enabled   Boolean
+  featureId String
+  feature   FeatureFlag @relation(fields: [featureId], references: [id])
+  @@unique([userId, featureId])
+}
+
+model GroupOverride {
+  id        String  @id @default(uuid())
+  groupId   String
+  enabled   Boolean
+  featureId String
+  feature   FeatureFlag @relation(fields: [featureId], references: [id])
+  @@unique([groupId, featureId])
+}
+
+model RegionOverride {
+  id        String  @id @default(uuid())
+  region    String
+  enabled   Boolean
+  featureId String
+  feature   FeatureFlag @relation(fields: [featureId], references: [id])
+  @@unique([region, featureId])
+}
